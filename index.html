@@ -1,0 +1,2605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>The Backyard Cafe</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#faf8f5;
+  color:#241b17;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+
+/* NAVBAR */
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #eee;
+}
+
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:800;
+  letter-spacing:-.5px;
+}
+
+.logo span{
+  color:#a75d32;
+}
+
+.nav-links{
+  display:flex;
+  gap:24px;
+}
+
+.nav-links a{
+  color:#332822;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+}
+
+.cart-button{
+  border:0;
+  background:#241b17;
+  color:white;
+  padding:11px 17px;
+  border-radius:30px;
+  font-weight:700;
+}
+
+.cart-count{
+  display:inline-flex;
+  min-width:21px;
+  height:21px;
+  align-items:center;
+  justify-content:center;
+  background:#d98b50;
+  border-radius:50%;
+  font-size:12px;
+  margin-left:5px;
+}
+
+
+/* HERO */
+
+.hero{
+  min-height:590px;
+  background:
+    linear-gradient(
+      rgba(30,20,15,.55),
+      rgba(30,20,15,.55)
+    ),
+    url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1600")
+    center/cover;
+  display:flex;
+  align-items:center;
+  color:white;
+}
+
+.hero-content{
+  width:min(1200px,100%);
+  margin:auto;
+  padding:70px 20px;
+}
+
+.hero-small{
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:13px;
+  margin-bottom:15px;
+}
+
+.hero h1{
+  font-size:clamp(45px,8vw,85px);
+  line-height:.95;
+  max-width:800px;
+  margin-bottom:25px;
+}
+
+.hero p{
+  max-width:580px;
+  font-size:18px;
+  line-height:1.7;
+  color:#f4eeee;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+
+.primary-btn,
+.secondary-btn{
+  padding:14px 22px;
+  border-radius:30px;
+  text-decoration:none;
+  border:0;
+  font-weight:700;
+}
+
+.primary-btn{
+  background:#d98b50;
+  color:white;
+}
+
+.secondary-btn{
+  background:white;
+  color:#241b17;
+}
+
+
+/* SECTIONS */
+
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:85px 20px;
+}
+
+.section-heading{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.section-heading span{
+  color:#a75d32;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.section-heading h2{
+  font-size:42px;
+  margin-top:8px;
+}
+
+
+/* ABOUT */
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:45px;
+  align-items:center;
+}
+
+.about-image{
+  border-radius:25px;
+  overflow:hidden;
+}
+
+.about-image img{
+  width:100%;
+  height:470px;
+  object-fit:cover;
+}
+
+.about-text p{
+  color:#665952;
+  line-height:1.8;
+  margin-bottom:18px;
+}
+
+.info-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:25px;
+}
+
+.info-card{
+  background:white;
+  padding:18px;
+  border-radius:16px;
+  border:1px solid #eee;
+}
+
+.info-card strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+.info-card span{
+  font-size:13px;
+  color:#777;
+}
+
+
+/* MENU */
+
+.menu-section{
+  background:#f2ede8;
+}
+
+.menu-wrapper{
+  max-width:1200px;
+  margin:auto;
+  padding:85px 20px;
+}
+
+.categories{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:35px;
+}
+
+.category-btn{
+  padding:10px 18px;
+  border:1px solid #d8cec6;
+  background:white;
+  border-radius:30px;
+  color:#4c3c34;
+}
+
+.category-btn.active{
+  background:#241b17;
+  color:white;
+  border-color:#241b17;
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fill,minmax(240px,1fr));
+  gap:22px;
+}
+
+.food-card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #e8e0da;
+  box-shadow:0 8px 25px rgba(50,30,20,.05);
+}
+
+.food-image{
+  height:210px;
+  position:relative;
+  background:#ddd;
+}
+
+.food-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.unavailable{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.58);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.food-content{
+  padding:19px;
+}
+
+.food-content h3{
+  margin-bottom:7px;
+}
+
+.food-content p{
+  font-size:13px;
+  line-height:1.5;
+  color:#777;
+  min-height:40px;
+}
+
+.food-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:18px;
+}
+
+.price{
+  font-size:19px;
+  font-weight:800;
+}
+
+.add-btn{
+  background:#241b17;
+  color:white;
+  border:0;
+  padding:10px 15px;
+  border-radius:25px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.add-btn:disabled{
+  background:#bbb;
+  cursor:not-allowed;
+}
+
+
+/* REVIEWS */
+
+.reviews{
+  display:grid;
+  grid-template-columns:
+    repeat(3,1fr);
+  gap:20px;
+}
+
+.review{
+  background:white;
+  padding:28px;
+  border-radius:20px;
+  border:1px solid #eee;
+}
+
+.stars{
+  color:#d98b50;
+  margin-bottom:15px;
+}
+
+.review p{
+  color:#665952;
+  line-height:1.7;
+}
+
+.review strong{
+  display:block;
+  margin-top:20px;
+}
+
+
+/* CART DRAWER */
+
+.cart-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:2000;
+  display:none;
+}
+
+.cart-overlay.show{
+  display:block;
+}
+
+.cart-drawer{
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+  width:min(430px,100%);
+  background:white;
+  display:flex;
+  flex-direction:column;
+}
+
+.cart-header{
+  padding:20px;
+  border-bottom:1px solid #eee;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.close-btn{
+  border:0;
+  background:#eee;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+}
+
+.cart-items{
+  padding:20px;
+  flex:1;
+  overflow:auto;
+}
+
+.cart-item{
+  display:flex;
+  gap:12px;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
+}
+
+.cart-item-info{
+  flex:1;
+}
+
+.cart-item-info strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.cart-item-price{
+  color:#777;
+  font-size:13px;
+}
+
+.quantity{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+
+.quantity button{
+  width:26px;
+  height:26px;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:6px;
+}
+
+.cart-footer{
+  padding:20px;
+  border-top:1px solid #eee;
+}
+
+.total-row{
+  display:flex;
+  justify-content:space-between;
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:15px;
+}
+
+.checkout-btn{
+  width:100%;
+  border:0;
+  background:#241b17;
+  color:white;
+  padding:15px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+
+/* MODAL */
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-overlay.show{
+  display:flex;
+}
+
+.modal{
+  width:min(550px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:white;
+  border-radius:24px;
+  padding:28px;
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+}
+
+.form-group{
+  margin-bottom:16px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  outline:none;
+}
+
+.form-group textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+.order-summary{
+  background:#f7f3ef;
+  border-radius:14px;
+  padding:15px;
+  margin-bottom:20px;
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:7px;
+  font-size:14px;
+}
+
+.submit-order{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:#241b17;
+  color:white;
+  font-weight:800;
+}
+
+.submit-order:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+
+/* SUCCESS */
+
+.success{
+  text-align:center;
+  padding:20px 5px;
+}
+
+.success-icon{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:#e8f6e9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 20px;
+  font-size:35px;
+}
+
+.order-number{
+  font-size:27px;
+  font-weight:900;
+  margin:10px 0 20px;
+}
+
+.whatsapp-btn{
+  display:block;
+  width:100%;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  padding:14px;
+  border-radius:12px;
+  font-weight:800;
+  margin-top:12px;
+}
+
+
+/* LOADING */
+
+.loading{
+  text-align:center;
+  padding:50px;
+  color:#777;
+}
+
+
+/* FOOTER */
+
+footer{
+  background:#241b17;
+  color:white;
+  text-align:center;
+  padding:45px 20px;
+}
+
+footer p{
+  color:#c9beb8;
+  margin-top:8px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .reviews{
+    grid-template-columns:1fr;
+  }
+
+  .info-cards{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    min-height:520px;
+  }
+
+  .section-heading h2{
+    font-size:34px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+  <div class="nav-inner">
+
+    <div class="logo">
+      The Backyard <span>Cafe</span>
+    </div>
+
+    <div class="nav-links">
+
+      <a href="#home">Home</a>
+
+      <a href="#about">About</a>
+
+      <a href="#menu">Menu</a>
+
+      <a href="#reviews">Reviews</a>
+
+    </div>
+
+    <button
+      class="cart-button"
+      onclick="openCart()"
+    >
+      Cart
+      <span
+        id="cartCount"
+        class="cart-count"
+      >0</span>
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section
+  id="home"
+  class="hero"
+>
+
+  <div class="hero-content">
+
+    <div class="hero-small">
+      Welcome to
+    </div>
+
+    <h1>
+      The Backyard Cafe
+    </h1>
+
+    <p>
+      A cozy place for good food,
+      refreshing drinks and great
+      conversations.
+    </p>
+
+    <div class="hero-buttons">
+
+      <a
+        href="#menu"
+        class="primary-btn"
+      >
+        Explore Menu
+      </a>
+
+      <a
+        href="#about"
+        class="secondary-btn"
+      >
+        About Us
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section
+  id="about"
+  class="section"
+>
+
+  <div class="about-grid">
+
+    <div class="about-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1000"
+        alt="Cafe"
+      >
+
+    </div>
+
+
+    <div class="about-text">
+
+      <div class="section-heading"
+           style="text-align:left;margin-bottom:20px;">
+
+        <span>Our Cafe</span>
+
+        <h2>
+          Your little backyard escape.
+        </h2>
+
+      </div>
+
+      <p>
+        The Backyard Cafe is a cozy cafe
+        designed for relaxing moments,
+        delicious food and refreshing drinks.
+      </p>
+
+      <p>
+        Whether you're meeting friends,
+        grabbing a quick bite or simply
+        enjoying some coffee, you're welcome
+        here.
+      </p>
+
+
+      <div class="info-cards">
+
+        <div class="info-card">
+          <strong>₹1–200</strong>
+          <span>Typical price</span>
+        </div>
+
+        <div class="info-card">
+          <strong>5.0 ★</strong>
+          <span>Google rating</span>
+        </div>
+
+        <div class="info-card">
+          <strong>10 PM</strong>
+          <span>Closing time</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section
+  id="menu"
+  class="menu-section"
+>
+
+  <div class="menu-wrapper">
+
+    <div class="section-heading">
+
+      <span>Fresh & Delicious</span>
+
+      <h2>Our Menu</h2>
+
+    </div>
+
+
+    <div
+      id="categories"
+      class="categories"
+    ></div>
+
+
+    <div
+      id="menuGrid"
+      class="menu-grid"
+    >
+
+      <div class="loading">
+        Loading menu...
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section
+  id="reviews"
+  class="section"
+>
+
+  <div class="section-heading">
+
+    <span>Happy Customers</span>
+
+    <h2>What People Say</h2>
+
+  </div>
+
+
+  <div class="reviews">
+
+    <div class="review">
+
+      <div class="stars">
+        ★★★★★
+      </div>
+
+      <p>
+        Amazing cafe atmosphere and
+        really nice food.
+      </p>
+
+      <strong>
+        Google Customer
+      </strong>
+
+    </div>
+
+
+    <div class="review">
+
+      <div class="stars">
+        ★★★★★
+      </div>
+
+      <p>
+        A lovely place to spend time
+        with friends.
+      </p>
+
+      <strong>
+        Google Customer
+      </strong>
+
+    </div>
+
+
+    <div class="review">
+
+      <div class="stars">
+        ★★★★★
+      </div>
+
+      <p>
+        Great experience and friendly
+        cafe environment.
+      </p>
+
+      <strong>
+        Google Customer
+      </strong>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CART -->
+
+<div
+  id="cartOverlay"
+  class="cart-overlay"
+>
+
+  <div class="cart-drawer">
+
+    <div class="cart-header">
+
+      <h2>Your Cart</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeCart()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      id="cartItems"
+      class="cart-items"
+    ></div>
+
+
+    <div class="cart-footer">
+
+      <div class="total-row">
+
+        <span>Total</span>
+
+        <span>
+          ₹<span id="cartTotal">0</span>
+        </span>
+
+      </div>
+
+      <button
+        class="checkout-btn"
+        onclick="openCheckout()"
+      >
+        Proceed to Checkout
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- CHECKOUT MODAL -->
+
+<div
+  id="checkoutOverlay"
+  class="modal-overlay"
+>
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <h2>Place Your Order</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeCheckout()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      id="checkoutSummary"
+      class="order-summary"
+    ></div>
+
+
+    <div class="form-group">
+
+      <label>
+        Your Name
+      </label>
+
+      <input
+        id="customerName"
+        type="text"
+        placeholder="Enter your name"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Phone Number
+      </label>
+
+      <input
+        id="customerPhone"
+        type="tel"
+        inputmode="numeric"
+        placeholder="Enter phone number"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Order Type
+      </label>
+
+      <select
+        id="orderType"
+        onchange="toggleAddress()"
+      >
+
+        <option value="Dine-in">
+          Dine-in
+        </option>
+
+        <option value="Takeaway">
+          Takeaway
+        </option>
+
+        <option value="Delivery">
+          Delivery
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div
+      id="addressGroup"
+      class="form-group"
+      style="display:none;"
+    >
+
+      <label>
+        Delivery Address
+      </label>
+
+      <textarea
+        id="customerAddress"
+        placeholder="Enter your delivery address"
+      ></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Special Instructions
+      </label>
+
+      <textarea
+        id="instructions"
+        placeholder="Any special request?"
+      ></textarea>
+
+    </div>
+
+
+    <button
+      id="submitOrderButton"
+      class="submit-order"
+      onclick="submitOrder()"
+    >
+      Place Order
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- SUCCESS MODAL -->
+
+<div
+  id="successOverlay"
+  class="modal-overlay"
+>
+
+  <div class="modal">
+
+    <div class="success">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>
+        Order Created!
+      </h2>
+
+      <div
+        id="successOrderNumber"
+        class="order-number"
+      ></div>
+
+      <p>
+        Your order has been saved.
+      </p>
+
+      <p style="margin-top:8px;color:#777;">
+        WhatsApp will open with your
+        order details.
+      </p>
+
+
+      <a
+        id="whatsappButton"
+        class="whatsapp-btn"
+        target="_blank"
+        rel="noopener"
+      >
+        Send Order on WhatsApp
+      </a>
+
+      <button
+        class="submit-order"
+        style="margin-top:10px;"
+        onclick="closeSuccess()"
+      >
+        Done
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <h2>
+    The Backyard Cafe
+  </h2>
+
+  <p>
+    Uattardhona, Lucknow
+  </p>
+
+  <p>
+    Dine-in · Takeaway · Delivery
+  </p>
+
+</footer>
+
+
+<script>
+
+/*************************************************
+ * IMPORTANT CONFIGURATION
+ *************************************************/
+
+
+/*
+ * PASTE YOUR GOOGLE APPS SCRIPT
+ * WEB APP URL HERE.
+ *
+ * It MUST end with /exec
+ *
+ * Example:
+ *
+ * https://script.google.com/macros/s/ABC123/exec
+ */
+
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbx-Rmc8J3LUCPTehhzBW4cY99o2iMOZQHTp4BTbrDuqbf3qXi7j5t9oDcwifZUnUnGVtw/exec";
+
+
+/*
+ * OWNER WHATSAPP
+ *
+ * India country code = 91
+ *
+ * 7905845958
+ * becomes:
+ * 917905845958
+ */
+
+const OWNER_WHATSAPP =
+  "917905845958";
+
+
+/*************************************************
+ * GLOBAL VARIABLES
+ *************************************************/
+
+let menu = [];
+
+let cart = [];
+
+let selectedCategory = "All";
+
+
+/*************************************************
+ * START WEBSITE
+ *************************************************/
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    loadCustomerMemory();
+
+    loadMenu();
+
+  }
+);
+
+
+/*************************************************
+ * LOAD MENU
+ *************************************************/
+
+async function loadMenu(){
+
+  const grid =
+    document.getElementById(
+      "menuGrid"
+    );
+
+
+  if(
+    !GOOGLE_SCRIPT_URL ||
+    GOOGLE_SCRIPT_URL.includes(
+      "PASTE_YOUR"
+    )
+  ){
+
+    grid.innerHTML = `
+      <div class="loading">
+        Please add your Google Apps Script
+        Web App URL in index.html.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  try{
+
+    const response =
+      await fetch(
+        GOOGLE_SCRIPT_URL +
+        "?action=menu"
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(
+      !result.success
+    ){
+
+      throw new Error(
+        result.error ||
+        "Menu could not be loaded."
+      );
+
+    }
+
+
+    menu =
+      Array.isArray(result.menu)
+        ? result.menu
+        : [];
+
+
+    renderCategories();
+
+    renderMenu();
+
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    grid.innerHTML = `
+      <div class="loading">
+
+        <strong>
+          Menu could not be loaded.
+        </strong>
+
+        <br><br>
+
+        Check that your Apps Script
+        Web App is deployed correctly.
+
+      </div>
+    `;
+
+  }
+
+}
+
+
+/*************************************************
+ * CATEGORIES
+ *************************************************/
+
+function renderCategories(){
+
+  const container =
+    document.getElementById(
+      "categories"
+    );
+
+
+  const categories = [
+    "All",
+    ...new Set(
+      menu.map(
+        item => item.category
+      )
+    )
+  ];
+
+
+  container.innerHTML =
+    categories
+      .map(category => `
+
+        <button
+          class="category-btn ${
+            category === selectedCategory
+              ? "active"
+              : ""
+          }"
+          onclick="selectCategory('${escapeAttribute(category)}')"
+        >
+          ${escapeHTML(category)}
+        </button>
+
+      `)
+      .join("");
+
+}
+
+
+/*************************************************
+ * SELECT CATEGORY
+ *************************************************/
+
+function selectCategory(category){
+
+  selectedCategory =
+    category;
+
+  renderCategories();
+
+  renderMenu();
+
+}
+
+
+/*************************************************
+ * RENDER MENU
+ *************************************************/
+
+function renderMenu(){
+
+  const grid =
+    document.getElementById(
+      "menuGrid"
+    );
+
+
+  let filtered =
+    menu;
+
+
+  if(
+    selectedCategory !== "All"
+  ){
+
+    filtered =
+      menu.filter(
+        item =>
+          item.category ===
+          selectedCategory
+      );
+
+  }
+
+
+  if(filtered.length === 0){
+
+    grid.innerHTML = `
+      <div class="loading">
+        No menu items available.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  grid.innerHTML =
+    filtered
+      .map(item => {
+
+        const available =
+          item.available === true;
+
+
+        return `
+
+          <div class="food-card">
+
+            <div class="food-image">
+
+              <img
+                src="${escapeAttribute(
+                  item.image ||
+                  "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800"
+                )}"
+                alt="${escapeAttribute(
+                  item.name
+                )}"
+                onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800'"
+              >
+
+              ${
+                available
+                ? ""
+                : `
+                  <div class="unavailable">
+                    Currently Unavailable
+                  </div>
+                `
+              }
+
+            </div>
+
+
+            <div class="food-content">
+
+              <h3>
+                ${escapeHTML(
+                  item.name
+                )}
+              </h3>
+
+              <p>
+                ${escapeHTML(
+                  item.description
+                )}
+              </p>
+
+
+              <div class="food-bottom">
+
+                <div class="price">
+                  ₹${Number(
+                    item.price || 0
+                  )}
+                </div>
+
+                <button
+                  class="add-btn"
+                  ${
+                    available
+                    ? ""
+                    : "disabled"
+                  }
+                  onclick="addToCart('${escapeAttribute(item.id)}')"
+                >
+                  ${
+                    available
+                    ? "Add to Cart"
+                    : "Unavailable"
+                  }
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+}
+
+
+/*************************************************
+ * ADD TO CART
+ *************************************************/
+
+function addToCart(id){
+
+  const item =
+    menu.find(
+      x => x.id === id
+    );
+
+
+  if(!item) return;
+
+
+  if(item.available !== true){
+
+    alert(
+      "This item is currently unavailable."
+    );
+
+    return;
+
+  }
+
+
+  const existing =
+    cart.find(
+      x => x.id === id
+    );
+
+
+  if(existing){
+
+    existing.quantity++;
+
+  }
+
+  else{
+
+    cart.push({
+
+      id: item.id,
+
+      name: item.name,
+
+      price: Number(
+        item.price || 0
+      ),
+
+      quantity: 1
+
+    });
+
+  }
+
+
+  saveCart();
+
+  renderCart();
+
+  updateCartCount();
+
+}
+
+
+/*************************************************
+ * CHANGE QUANTITY
+ *************************************************/
+
+function changeQuantity(
+  id,
+  change
+){
+
+  const item =
+    cart.find(
+      x => x.id === id
+    );
+
+
+  if(!item) return;
+
+
+  item.quantity += change;
+
+
+  if(item.quantity <= 0){
+
+    cart =
+      cart.filter(
+        x => x.id !== id
+      );
+
+  }
+
+
+  saveCart();
+
+  renderCart();
+
+  updateCartCount();
+
+}
+
+
+/*************************************************
+ * CART TOTAL
+ *************************************************/
+
+function getCartTotal(){
+
+  return cart.reduce(
+    (sum,item) =>
+      sum +
+      (
+        Number(item.price) *
+        Number(item.quantity)
+      ),
+    0
+  );
+
+}
+
+
+/*************************************************
+ * CART COUNT
+ *************************************************/
+
+function updateCartCount(){
+
+  const count =
+    cart.reduce(
+      (sum,item) =>
+        sum +
+        Number(item.quantity),
+      0
+    );
+
+
+  document.getElementById(
+    "cartCount"
+  ).textContent = count;
+
+}
+
+
+/*************************************************
+ * RENDER CART
+ *************************************************/
+
+function renderCart(){
+
+  const container =
+    document.getElementById(
+      "cartItems"
+    );
+
+
+  const total =
+    getCartTotal();
+
+
+  document.getElementById(
+    "cartTotal"
+  ).textContent =
+    total;
+
+
+  if(cart.length === 0){
+
+    container.innerHTML = `
+
+      <div class="loading">
+        Your cart is empty.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    cart
+      .map(item => `
+
+        <div class="cart-item">
+
+          <div class="cart-item-info">
+
+            <strong>
+              ${escapeHTML(
+                item.name
+              )}
+            </strong>
+
+            <div class="cart-item-price">
+              ₹${item.price} each
+            </div>
+
+
+            <div class="quantity">
+
+              <button
+                onclick="changeQuantity(
+                  '${escapeAttribute(item.id)}',
+                  -1
+                )"
+              >
+                −
+              </button>
+
+              <span>
+                ${item.quantity}
+              </span>
+
+              <button
+                onclick="changeQuantity(
+                  '${escapeAttribute(item.id)}',
+                  1
+                )"
+              >
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <strong>
+            ₹${
+              item.price *
+              item.quantity
+            }
+          </strong>
+
+        </div>
+
+      `)
+      .join("");
+
+}
+
+
+/*************************************************
+ * OPEN CART
+ *************************************************/
+
+function openCart(){
+
+  renderCart();
+
+  document
+    .getElementById(
+      "cartOverlay"
+    )
+    .classList.add("show");
+
+}
+
+
+/*************************************************
+ * CLOSE CART
+ *************************************************/
+
+function closeCart(){
+
+  document
+    .getElementById(
+      "cartOverlay"
+    )
+    .classList.remove("show");
+
+}
+
+
+/*************************************************
+ * OPEN CHECKOUT
+ *************************************************/
+
+function openCheckout(){
+
+  if(cart.length === 0){
+
+    alert(
+      "Please add at least one item."
+    );
+
+    return;
+
+  }
+
+
+  renderCheckoutSummary();
+
+  closeCart();
+
+
+  document
+    .getElementById(
+      "checkoutOverlay"
+    )
+    .classList.add("show");
+
+}
+
+
+/*************************************************
+ * CLOSE CHECKOUT
+ *************************************************/
+
+function closeCheckout(){
+
+  document
+    .getElementById(
+      "checkoutOverlay"
+    )
+    .classList.remove("show");
+
+}
+
+
+/*************************************************
+ * CHECKOUT SUMMARY
+ *************************************************/
+
+function renderCheckoutSummary(){
+
+  const container =
+    document.getElementById(
+      "checkoutSummary"
+    );
+
+
+  container.innerHTML =
+    cart
+      .map(item => `
+
+        <div class="summary-row">
+
+          <span>
+            ${escapeHTML(
+              item.name
+            )}
+            × ${item.quantity}
+          </span>
+
+          <strong>
+            ₹${
+              item.price *
+              item.quantity
+            }
+          </strong>
+
+        </div>
+
+      `)
+      .join("") +
+
+      `
+
+        <hr style="
+          border:0;
+          border-top:1px solid #ddd;
+          margin:12px 0;
+        ">
+
+        <div class="summary-row">
+
+          <strong>Total</strong>
+
+          <strong>
+            ₹${getCartTotal()}
+          </strong>
+
+        </div>
+
+      `;
+
+}
+
+
+/*************************************************
+ * DELIVERY ADDRESS
+ *************************************************/
+
+function toggleAddress(){
+
+  const type =
+    document.getElementById(
+      "orderType"
+    ).value;
+
+
+  const group =
+    document.getElementById(
+      "addressGroup"
+    );
+
+
+  if(type === "Delivery"){
+
+    group.style.display =
+      "block";
+
+  }
+
+  else{
+
+    group.style.display =
+      "none";
+
+  }
+
+}
+
+
+/*************************************************
+ * CUSTOMER MEMORY
+ *************************************************/
+
+function loadCustomerMemory(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(
+        "backyardCafeCustomer"
+      );
+
+
+    if(!saved) return;
+
+
+    const customer =
+      JSON.parse(saved);
+
+
+    document.getElementById(
+      "customerName"
+    ).value =
+      customer.name || "";
+
+
+    document.getElementById(
+      "customerPhone"
+    ).value =
+      customer.phone || "";
+
+
+    document.getElementById(
+      "customerAddress"
+    ).value =
+      customer.address || "";
+
+  }
+
+  catch(error){
+
+    console.log(
+      "Customer memory unavailable."
+    );
+
+  }
+
+}
+
+
+/*************************************************
+ * SAVE CUSTOMER MEMORY
+ *************************************************/
+
+function saveCustomerLocally(){
+
+  const customer = {
+
+    name:
+      document.getElementById(
+        "customerName"
+      ).value.trim(),
+
+    phone:
+      document.getElementById(
+        "customerPhone"
+      ).value.trim(),
+
+    address:
+      document.getElementById(
+        "customerAddress"
+      ).value.trim()
+
+  };
+
+
+  localStorage.setItem(
+    "backyardCafeCustomer",
+    JSON.stringify(customer)
+  );
+
+}
+
+
+/*************************************************
+ * SUBMIT ORDER
+ *************************************************/
+
+async function submitOrder(){
+
+  const button =
+    document.getElementById(
+      "submitOrderButton"
+    );
+
+
+  /******** VALIDATE CART ********/
+
+  if(cart.length === 0){
+
+    alert(
+      "Your cart is empty."
+    );
+
+    return;
+
+  }
+
+
+  /******** GET FORM ********/
+
+  const name =
+    document.getElementById(
+      "customerName"
+    ).value.trim();
+
+
+  const phone =
+    document.getElementById(
+      "customerPhone"
+    ).value
+      .replace(/\D/g,"");
+
+
+  const orderType =
+    document.getElementById(
+      "orderType"
+    ).value;
+
+
+  const address =
+    document.getElementById(
+      "customerAddress"
+    ).value.trim();
+
+
+  const instructions =
+    document.getElementById(
+      "instructions"
+    ).value.trim();
+
+
+  /******** VALIDATION ********/
+
+  if(!name){
+
+    alert(
+      "Please enter your name."
+    );
+
+    return;
+
+  }
+
+
+  if(phone.length < 10){
+
+    alert(
+      "Please enter a valid phone number."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    orderType === "Delivery" &&
+    !address
+  ){
+
+    alert(
+      "Please enter your delivery address."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !GOOGLE_SCRIPT_URL ||
+    GOOGLE_SCRIPT_URL.includes(
+      "PASTE_YOUR"
+    )
+  ){
+
+    alert(
+      "Google Apps Script Web App URL has not been added."
+    );
+
+    return;
+
+  }
+
+
+  /*************************************************
+   * OPEN WHATSAPP WINDOW IMMEDIATELY
+   *
+   * This avoids popup blockers.
+   *************************************************/
+
+  const whatsappWindow =
+    window.open(
+      "about:blank",
+      "_blank"
+    );
+
+
+  /******** DISABLE BUTTON ********/
+
+  button.disabled = true;
+
+  button.textContent =
+    "Creating Order...";
+
+
+  /******** ORDER OBJECT ********/
+
+  const order = {
+
+    action:
+      "createOrder",
+
+    name:
+      name,
+
+    phone:
+      phone,
+
+    orderType:
+      orderType,
+
+    address:
+      address,
+
+    instructions:
+      instructions,
+
+    total:
+      getCartTotal(),
+
+    items:
+      cart.map(item => ({
+
+        id:
+          item.id,
+
+        name:
+          item.name,
+
+        price:
+          Number(item.price),
+
+        quantity:
+          Number(item.quantity)
+
+      }))
+
+  };
+
+
+  try{
+
+    /*************************************************
+     * SEND TO GOOGLE APPS SCRIPT
+     *
+     * text/plain avoids unnecessary preflight
+     * problems with Apps Script web apps.
+     *************************************************/
+
+    const response =
+      await fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:
+            JSON.stringify(order)
+
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(
+      !result.success
+    ){
+
+      throw new Error(
+        result.error ||
+        "Order could not be created."
+      );
+
+    }
+
+
+    /******** SAVE CUSTOMER ********/
+
+    saveCustomerLocally();
+
+
+    /******** CREATE WHATSAPP MESSAGE ********/
+
+    const orderNumber =
+      result.orderNumber;
+
+
+    const whatsappMessage =
+      createWhatsAppMessage(
+        orderNumber,
+        order
+      );
+
+
+    const whatsappURL =
+      "https://wa.me/" +
+      OWNER_WHATSAPP +
+      "?text=" +
+      encodeURIComponent(
+        whatsappMessage
+      );
+
+
+    /******** SEND WHATSAPP WINDOW ********/
+
+    if(whatsappWindow){
+
+      whatsappWindow.location.href =
+        whatsappURL;
+
+    }
+
+
+    /******** SHOW SUCCESS ********/
+
+    document.getElementById(
+      "successOrderNumber"
+    ).textContent =
+      orderNumber;
+
+
+    document.getElementById(
+      "whatsappButton"
+    ).href =
+      whatsappURL;
+
+
+    closeCheckout();
+
+
+    document
+      .getElementById(
+        "successOverlay"
+      )
+      .classList.add("show");
+
+
+    /******** CLEAR CART ********/
+
+    cart = [];
+
+    saveCart();
+
+    updateCartCount();
+
+    renderCart();
+
+
+    /******** RESET BUTTON ********/
+
+    button.disabled = false;
+
+    button.textContent =
+      "Place Order";
+
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+
+    /******** CLOSE BLANK WINDOW ********/
+
+    if(whatsappWindow){
+
+      whatsappWindow.close();
+
+    }
+
+
+    alert(
+      "Order could not be created.\n\n" +
+      "Reason: " +
+      error.message
+    );
+
+
+    button.disabled = false;
+
+    button.textContent =
+      "Place Order";
+
+  }
+
+}
+
+
+/*************************************************
+ * WHATSAPP MESSAGE
+ *************************************************/
+
+function createWhatsAppMessage(
+  orderNumber,
+  order
+){
+
+  const itemsText =
+    order.items
+      .map(item => {
+
+        return (
+          "• " +
+          item.name +
+          " x" +
+          item.quantity +
+          " = ₹" +
+          (
+            Number(item.price) *
+            Number(item.quantity)
+          )
+        );
+
+      })
+      .join("\n");
+
+
+  return `🍽️ THE BACKYARD CAFE
+
+🔔 NEW ORDER
+
+Order No: ${orderNumber}
+
+👤 Customer: ${order.name}
+
+📱 Phone: ${order.phone}
+
+📦 Order Type: ${order.orderType}
+
+${
+  order.address
+    ? "📍 Address: " +
+      order.address
+    : ""
+}
+
+🛒 ITEMS
+
+${itemsText}
+
+💰 TOTAL: ₹${order.total}
+
+${
+  order.instructions
+    ? "📝 Instructions: " +
+      order.instructions
+    : ""
+}
+
+Please confirm the order.`;
+
+}
+
+
+/*************************************************
+ * SUCCESS CLOSE
+ *************************************************/
+
+function closeSuccess(){
+
+  document
+    .getElementById(
+      "successOverlay"
+    )
+    .classList.remove("show");
+
+}
+
+
+/*************************************************
+ * LOCAL CART
+ *************************************************/
+
+function saveCart(){
+
+  localStorage.setItem(
+    "backyardCafeCart",
+    JSON.stringify(cart)
+  );
+
+}
+
+
+function loadCart(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(
+        "backyardCafeCart"
+      );
+
+
+    if(saved){
+
+      cart =
+        JSON.parse(saved);
+
+    }
+
+  }
+
+  catch(error){
+
+    cart = [];
+
+  }
+
+}
+
+
+/*************************************************
+ * LOAD CART ON START
+ *************************************************/
+
+loadCart();
+
+updateCartCount();
+
+
+/*************************************************
+ * SECURITY / HTML HELPERS
+ *************************************************/
+
+function escapeHTML(value){
+
+  return String(value || "")
+    .replace(
+      /[&<>"']/g,
+      function(char){
+
+        const entities = {
+
+          "&":"&amp;",
+          "<":"&lt;",
+          ">":"&gt;",
+          '"':"&quot;",
+          "'":"&#039;"
+
+        };
+
+        return entities[char];
+
+      }
+    );
+
+}
+
+
+function escapeAttribute(value){
+
+  return escapeHTML(value);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
